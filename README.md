@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1 align="center"><b>Next.js</b> + <b>Supabase</b> Auth</h1>
 
-## Getting Started
+<p align="center" style="display: flex; align-items: center; justify-content: center; gap: 0.75rem;">
+  <a href="https://nextjs.org">
+    <img src="https://img.shields.io/github/package-json/dependency-version/mryechkin/nextjs-supabase-auth/next?style=for-the-badge" alt="Next.js" />
+  </a>
+  <a href="https://www.supabase.io">
+    <img src="https://img.shields.io/github/package-json/dependency-version/mryechkin/nextjs-supabase-auth/@supabase/supabase-js?color=%2322c55e&style=for-the-badge" alt="Supabase" />
+  </a>
+  <a href="https://www.supabase.io">
+    <img src="https://img.shields.io/github/package-json/dependency-version/mryechkin/nextjs-supabase-auth/@supabase/auth-helpers-nextjs?color=%2322c55e&style=for-the-badge" alt="Supabase" />
+  </a>
+  <a href="https://github.com/mryechkin/nextjs-supabase-auth/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/mryechkin/nextjs-supabase-auth?style=for-the-badge" alt="License" />
+  </a>
+</p>
 
-First, run the development server:
+<p align="center">
+  <img src="https://www.misha.wtf/_next/image?url=%2Fblog%2Fsupabase-auth-next-13-pkce%2Fcover.png&w=640&q=100" alt="Banner image" />
+</p>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Overview
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Sample project showing how to add authentication to [Next.js](https://nextjs.org/) 13+ using [Supabase](https://www.supabase.io/) [Auth](https://supabase.com/docs/guides/auth) and the [App Router](https://nextjs.org/docs/app) with React Server Components.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+This project is a supplement to [this guide](https://misha.wtf/blog/supabase-auth-next-13-pkce). See the link for a detailed tutorial.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+> **Note**
+> The `main` branch is using the latest version of [Auth Helpers](https://supabase.com/docs/guides/auth/auth-helpers/nextjs) with the [Proof Key for Code Exchange](https://supabase.com/blog/supabase-auth-sso-pkce#introducing-pkce) (PKCE) flow. If you are looking for the older version (using Auth Helpers `0.6.1` or earlier) see the [`v2`](https://github.com/mryechkin/nextjs-supabase-auth/tree/v2) branch.
 
-## Learn More
+## Disclaimer
 
-To learn more about Next.js, take a look at the following resources:
+This repo is meant to be an **example** only. Please feel free to fork it and make it your own.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Author
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+[Mykhaylo Ryechkin](https://github.com/mryechkin)
 
-## Deploy on Vercel
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+[MIT](https://choosealicense.com/licenses/mit/)
