@@ -1,10 +1,19 @@
 import React, { useEffect } from "react";
-import MovieList from "src/components/fetchMovies.js";
+import supabase from "@/lib/supabase";
 
 const Dashboard = () => {
+    const session = supabase.auth.getSession();
+    console.log(session);
+
+    useEffect(() => {
+        if (!session) {
+            router.push("/auth");
+        }
+    }, [session]);
+
     return (
         <div>
-            <MovieList />
+            <p>Your are logged in as {session.user}</p>
         </div>
     );
 };
