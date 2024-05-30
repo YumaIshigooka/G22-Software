@@ -24,8 +24,8 @@ const Navbar = ({ user, background = 'white' }) => {
                     </div>
                 ) : (
                     <div className="flex items-center space-x-2">
-                        <Button text="Login" onClick={() => console.log('Login')} bgColor="bg-green-500" icon={undefined} iconPosition={undefined} />
-                        <Button text="Register" onClick={() => console.log('Register')} bgColor="bg-purple-500" icon={undefined} iconPosition={undefined} />
+                        <Button text="Login" onClick={() => console.log('Login')} bgColor="bg-transparent" icon={undefined} iconPosition={undefined} />
+                        <Button text="Register" onClick={() => console.log('Register')} bgColor="bg-blue-900" icon={undefined} iconPosition={undefined} />
                     </div>
                 )}
             </div>
