@@ -20,10 +20,9 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="es">
       <body>
-
         <Navbar user={session?.user} background="blue" />
-        <div className="flex min-h-screen flex-col items-center justify-center py-2">
-          <main className="flex w-full flex-1 shrink-0 flex-col items-center justify-center px-8 text-center sm:px-20">
+        <div className="flex min-h-screen flex-col items-center justify-center">
+          <main className="flex w-full flex-1 shrink-0 flex-col items-center text-center">
             <AuthProvider accessToken={session?.access_token}>{children}</AuthProvider>
           </main>
         </div>

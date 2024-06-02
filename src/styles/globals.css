@@ -50,4 +50,5 @@
   .row {
     @apply flex flex-row items-center justify-start gap-1;
   }
+
 }
