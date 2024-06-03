@@ -20,7 +20,9 @@ const Navbar = ({ user, background = 'white' }) => {
                 {user ? (
                     <div className="flex items-center space-x-2">
                         <Button text="Action" onClick={() => console.log('Clicked!')} icon="🚀" iconPosition="right" />
-                        <User photo={user.photo} name={user.email} description={user.description} />
+                        <Link href={'/profile'}>
+                            <User photo={user.photo} name={user.email} description={user.description} />
+                        </Link>
                     </div>
                 ) : (
                     <div className="flex items-center space-x-2">
