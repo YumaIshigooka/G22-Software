@@ -13,9 +13,9 @@ export default async function Home() {
     data: { user },
   } = await supabase.auth.getUser();
 
-  if (!user) {
-    redirect('/sign-in');
-  }
+  // if (!user) {
+  //   redirect('/sign-in');
+  // }
 
   return (
     <>
@@ -132,7 +132,7 @@ export default async function Home() {
             <p className='text-sm text-slate-300'>+34 666 666 666</p>
           </div>
         </div>
-        <div className='bg-slate-300 mt-8 mx-[4vw] rounded-full' style={{height: '1px'}}></div>
+        <div className='bg-slate-300 mt-8 mx-[4vw] rounded-full' style={{ height: '1px' }}></div>
         <div className='flex mt-4 w-full mb-10'>
           <p className='ml-[4vw]'>CoTravel2024</p>
           <div className='flex ml-auto'>

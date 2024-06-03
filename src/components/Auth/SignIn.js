@@ -1,11 +1,13 @@
-'use client';
+// @ts-nocheck
+'use client'
 
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import cn from 'classnames';
 import { Field, Form, Formik } from 'formik';
 import Link from 'next/link';
 import * as Yup from 'yup';
+import { useRouter } from 'next/navigation';
 
 const SignInSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Required'),
@@ -16,6 +18,8 @@ const SignIn = () => {
   const supabase = createClientComponentClient();
   const [errorMsg, setErrorMsg] = useState(null);
 
+  const router = useRouter();
+
   async function signIn(formData) {
     const { error } = await supabase.auth.signInWithPassword({
       email: formData.email,
@@ -24,8 +28,16 @@ const SignIn = () => {
 
     if (error) {
       setErrorMsg(error.message);
+    } else {
+      router.push('/explore');
     }
+
+
   }
+
+  useEffect(() => {
+    console.log("SignIn component is now client-side.");
+  }, []);
 
   return (
     <div className="card">
@@ -52,7 +64,7 @@ const SignIn = () => {
               <div className="text-red-600">{errors.email}</div>
             ) : null}
 
-            <label htmlFor="email">Password</label>
+            <label htmlFor="password">Password</label>
             <Field
               className={cn('input', errors.password && touched.password && 'bg-red-50')}
               id="password"
