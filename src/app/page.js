@@ -49,32 +49,34 @@ export default async function Home() {
       <div className='flex w-full mt-12 justify-center' style={{ backgroundColor: 'rgb(245, 245, 245)' }}>
         <div style={{ flex: '60%' }}>
           <img src='landing1.jpg' className='object-cover w-full h-[350px] rounded-xl' style={{ borderRadius: '0 20px 20px 0' }}></img>
-          <div className='mt-16 flex justify-center items-center'>
-            <div className='bg-blue-600 rounded-2xl mr-4'><img src='web_icon.png' className='filter invert size-8 m-1'></img></div>
-            <h1 className='text-3xl font-medium'>Conexiones Globales</h1>
-          </div>
-          <div className='mt-4 flex justify-center items-center'>
-            <p className='text-left text-lg mt-2 w-[25vw] text-slate-500'>
-              Con nuestra app, conecta con viajeros de todo el mundo que comparten tus intereses. Forma grupos y vive experiencias inolvidables juntos.
-            </p>
-          </div>
-          <div className='mt-16 flex justify-center items-center'>
-            <div className='bg-blue-600 rounded-2xl mr-4'><img src='teamwork_icon.png' className='filter invert size-8 m-1 p-1'></img></div>
-            <h1 className='text-3xl font-medium'>Facilidad de Coordinación</h1>
-          </div>
-          <div className='mt-4 flex justify-center items-center'>
-            <p className='text-left text-lg mt-2 w-[25vw] text-slate-500'>
-              Coordina todos los detalles de tu viaje fácilmente. Desde horarios de vuelos hasta reservas de alojamiento, nuestra app facilita la organización de todo el grupo.
-            </p>
-          </div>
-          <div className='mt-16 flex justify-center items-center'>
-            <div className='bg-blue-600 rounded-2xl mr-4'><img src='school_icon.png' className='filter invert size-8 m-1 p-1'></img></div>
-            <h1 className='text-3xl font-medium'>Exepriencias Personalizadas</h1>
-          </div>
-          <div className='mt-4 flex justify-center items-center'>
-            <p className='text-left text-lg mt-2 w-[25vw] text-slate-500'>
-              Únete a una comunidad global de viajeros apasionados. Comparte tus historias, recibe recomendaciones y encuentra compañeros de viaje con intereses similares.
-            </p>
+          <div className='flex flex-col w-full justify-start items-start ml-[20vw]'>
+            <div className='mt-16 flex justify-center items-center'>
+              <div className='bg-blue-600 rounded-2xl mr-4'><img src='web_icon.png' className='filter invert size-8 m-1'></img></div>
+              <h1 className='text-3xl font-medium'>Conexiones Globales</h1>
+            </div>
+            <div className='mt-4 flex justify-center items-center'>
+              <p className='text-left text-lg mt-2 w-[25vw] text-slate-500'>
+                Con nuestra app, conecta con viajeros de todo el mundo que comparten tus intereses. Forma grupos y vive experiencias inolvidables juntos.
+              </p>
+            </div>
+            <div className='mt-16 flex justify-center items-center'>
+              <div className='bg-blue-600 rounded-2xl mr-4'><img src='teamwork_icon.png' className='filter invert size-8 m-1 p-1'></img></div>
+              <h1 className='text-3xl font-medium'>Facilidad de Coordinación</h1>
+            </div>
+            <div className='mt-4 flex justify-center items-center'>
+              <p className='text-left text-lg mt-2 w-[25vw] text-slate-500'>
+                Coordina todos los detalles de tu viaje fácilmente. Desde horarios de vuelos hasta reservas de alojamiento, nuestra app facilita la organización de todo el grupo.
+              </p>
+            </div>
+            <div className='mt-16 flex justify-center items-center'>
+              <div className='bg-blue-600 rounded-2xl mr-4'><img src='school_icon.png' className='filter invert size-8 m-1 p-1'></img></div>
+              <h1 className='text-3xl font-medium'>Exepriencias Personalizadas</h1>
+            </div>
+            <div className='mt-4 flex justify-center items-center'>
+              <p className='text-left text-lg mt-2 w-[25vw] text-slate-500'>
+                Únete a una comunidad global de viajeros apasionados. Comparte tus historias, recibe recomendaciones y encuentra compañeros de viaje con intereses similares.
+              </p>
+            </div>
           </div>
         </div>
         <div style={{ flex: '10%', display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
