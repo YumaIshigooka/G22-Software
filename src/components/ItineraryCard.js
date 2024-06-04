@@ -22,7 +22,7 @@ const ItineraryCard = ({ image, title, depart_date, return_date, places="0", his
             </div>
             {history && (
                 <div className='flex justify-center items-center align-middle flex-col w-[60%]'>
-                    <p className='text-2xl font-light'>{valoration}</p>
+                    <p className='text-xl font-light mb-1'>{valoration}/5</p>
                     <div className='flex justify-center'>
                         {Array(valoration).fill('⭐').map((star, index) => (
                             <span key={index} className='text-xs'>{star}</span>
