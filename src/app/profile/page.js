@@ -71,6 +71,7 @@ export default async function Profile() {
                   depart_date="2024-07-01"
                   return_date="2024-07-15"
                   places="5"
+                  history={false}
               />
           </div>
         </div>
@@ -79,20 +80,24 @@ export default async function Profile() {
       <div className='flex ml-[4vw] flex-col'>
         <div className='mt-[3vh] flex'>
             <ItinerayCard 
-                  image="hawaii.jpg"
-                  title="Hawaii"
+                  image="vietnam.jpg"
+                  title="Vietnam"
                   depart_date="2024-07-01"
                   return_date="2024-07-15"
                   places="5"
+                  history={true}
+                  valoration={4}
               />
           </div>
           <div className='mt-[3vh] flex'>
             <ItinerayCard 
-                  image="hawaii.jpg"
-                  title="Hawaii"
+                  image="congo.jpg"
+                  title="Congo Exploration"
                   depart_date="2024-07-01"
                   return_date="2024-07-15"
                   places="5"
+                  history={true}
+                  valoration={3}
               />
           </div>
       </div>

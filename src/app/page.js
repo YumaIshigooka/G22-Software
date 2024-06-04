@@ -42,7 +42,7 @@ export default async function Home() {
           </div>
         </div>
       </div>
-      <div>
+      <div className='flex w-full items-center flex-col'>
         <h1 className='mt-12 text-4xl font-semibold'>¿Por qué CoTravel?</h1>
         <h3 className='mt-4 text-slate-500 w-[500px]'>Porque con CoTravel puedes encontrar más que un simple viaje con gente desconocida</h3>
       </div>
