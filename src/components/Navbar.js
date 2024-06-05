@@ -22,7 +22,7 @@ const Navbar = ({ user, background = 'white' }) => {
             <div className="user-info">
                 {user ? (
                     <div className="flex items-center space-x-2">
-                        <Button text="Action" onClick={() => console.log('Clicked!')} icon="🚀" iconPosition="right" />
+                        <Button text="Publish Travel" onClick={() => router.push('/publish')} icon="🚀" iconPosition="right" />
                         <Link href={'/profile'}>
                             <User photo={user.photo} name={user.email} description={user.description} />
                         </Link>

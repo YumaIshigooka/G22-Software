@@ -1,8 +1,10 @@
 // @ts-nocheck
 import React from 'react';
+import Link from 'next/link';
 
 const TravelCard = ({ travel, vertical }) => {
     const {
+        travel_id,
         destination,
         start_date,
         end_date,
@@ -23,7 +25,7 @@ const TravelCard = ({ travel, vertical }) => {
     const containerClass = vertical ? 'flex flex-col space-y-2' : 'text-gray-700 mt-2';
 
     return (
-        <div className={`bg-white border border-gray-300 rounded-lg shadow p-6 m-4 ${cardClass}`}>
+        <Link href={`/travel/${travel_id}`} className={`bg-white border border-gray-300 rounded-lg shadow p-6 m-4 ${cardClass}`}>
             <h2 className="text-xl font-semibold text-gray-800">{destination}</h2>
             <p className="text-gray-600">{formatDate(start_date)} - {formatDate(end_date)}</p>
             <div className={containerClass}>
@@ -34,7 +36,7 @@ const TravelCard = ({ travel, vertical }) => {
                 {rating && <p>Rating: {rating} / 5</p>}
                 {cost && <p>Cost: ${cost}</p>}
             </div>
-        </div>
+        </Link>
     );
 };
 

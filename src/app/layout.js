@@ -25,11 +25,6 @@ export default async function Layout({ children }) {
     data: { session },
   } = await supabase.auth.getSession();
 
-  // Background configuration - can be dynamic or static
-  let needsBackground = false;
-  let background = '/marrakech.png'; // Assuming you would define a URL or similar here if needed
-  // Return the structured component layout
-
   return (
     <html>
       <body>
