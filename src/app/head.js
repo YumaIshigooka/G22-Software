@@ -3,7 +3,7 @@ import React from "react";
 export default function Head() {
   return (
     <>
-      <title>Next.js with Supabase Auth</title>
+      <title>COTRAVEL - Holidays reinvented</title>
       <link rel="icon" href="/favicon.ico" />
       <meta name="viewport" content="width=device-width" />
       <link rel="preconnect" href="https://fonts.googleapis.com" />
