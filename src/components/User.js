@@ -6,7 +6,7 @@ const User = ({ photo, name, description }) => {
             <img src={photo} alt={name} className="w-10 h-10 rounded-full" />
             <div>
                 <div className="text-white text-sm">{name}</div>
-                <div className="text-white text-xs">Status: {description}</div>
+                <div className="text-white text-xs">{description}</div>
             </div>
         </div>
     );

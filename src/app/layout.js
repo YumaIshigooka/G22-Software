@@ -26,11 +26,17 @@ export default async function Layout({ children }) {
     data: { session },
   } = await supabase.auth.getSession();
 
+  const { data: profileData, error } = await supabase
+    .from('users')
+    .select('*')
+    .eq('auth_user_id', session?.user.id)
+    .single();
+
   return (
     <html>
-      <Head />
+      <Head></Head>
       <body className='max-w-[1920px] mx-auto'>
-        <Navbar user={session?.user} background="blue" />
+        <Navbar user={profileData} background="blue" />
         <AuthProvider accessToken={session?.access_token}>{children}</AuthProvider>
       </body>
     </html>

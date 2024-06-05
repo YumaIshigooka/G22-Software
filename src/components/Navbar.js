@@ -24,7 +24,7 @@ const Navbar = ({ user, background = 'white' }) => {
                     <div className="flex items-center space-x-2">
                         <Button text="Publish Travel" onClick={() => router.push('/publish')} icon="🚀" iconPosition="right" />
                         <Link href={'/profile'}>
-                            <User photo={user.photo} name={user.email} description={user.description} />
+                            <User photo={user.profile_picture} name={user.name} description={user.user_presentation} />
                         </Link>
                     </div>
                 ) : (
