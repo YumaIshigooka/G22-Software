@@ -35,7 +35,7 @@ export default function ProfileClient({ user, profileData: initialProfileData })
 
   return (
     <div className='flex w-full flex-col'>
-      <img src='forest.jpg' alt='not-found' className='object-cover w-full h-[150px]' style={{ objectPosition: 'center 50%' }}></img>
+      <img src='forest.webp' alt='not-found' className='object-cover w-full h-[150px]' style={{ objectPosition: 'center 50%' }}></img>
       <div className='flex w-full mt-[4vh] px-[6vw] mb-[4vh]'>
         <div className='flex'>
           <img src='' alt='user_profile'></img>
@@ -106,7 +106,7 @@ export default function ProfileClient({ user, profileData: initialProfileData })
               <p className='text-md text-blue-600 font-bold mt-[3vh]'>Created Itineraries</p>
               <div className='mb-[3vh] mt-[3vh]'>
                 <ItineraryCard 
-                  image="hawaii.jpg"
+                  image="hawaii_compressed.webp"
                   title="Hawaii"
                   depart_date="2024-07-01"
                   return_date="2024-07-15"
@@ -120,7 +120,7 @@ export default function ProfileClient({ user, profileData: initialProfileData })
               <div className='flex ml-[4vw] flex-col'>
                 <div className='mt-[3vh] flex'>
                   <ItineraryCard 
-                    image="vietnam.jpg"
+                    image="vietnam_compressed.webp"
                     title="Vietnam"
                     depart_date="2024-07-01"
                     return_date="2024-07-15"
@@ -131,7 +131,7 @@ export default function ProfileClient({ user, profileData: initialProfileData })
                 </div>
                 <div className='mt-[3vh] flex'>
                   <ItineraryCard 
-                    image="congo.jpg"
+                    image="congo_compressed.webp"
                     title="Congo Exploration"
                     depart_date="2024-07-01"
                     return_date="2024-07-15"
