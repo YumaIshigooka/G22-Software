@@ -27,7 +27,7 @@ export default async function Layout({ children }) {
 
   return (
     <html>
-      <body>
+      <body className='max-w-[1920px] mx-auto'>
         <Navbar user={session?.user} background="blue" />
         <AuthProvider accessToken={session?.access_token}>{children}</AuthProvider>
       </body>

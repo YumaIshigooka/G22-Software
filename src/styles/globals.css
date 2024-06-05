@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+body, p {
+  font-family: 'Inter', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Clash Display', sans-serif;
+}
+
+
 @layer base {
   h2 {
     @apply py-4 text-4xl font-black text-gray-800;
@@ -16,7 +25,7 @@
   }
 
   .card {
-    @apply column min-w-[20rem] items-center gap-8 rounded-2xl bg-white py-8 px-4 shadow-md sm:min-w-[24rem] sm:px-10;
+    @apply column min-w-[20rem] items-center gap-8 rounded-2xl bg-white py-8 px-4 shadow-md sm:min-w-[2+4rem] sm:px-10;
   }
 
   .column {
