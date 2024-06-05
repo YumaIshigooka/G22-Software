@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @font-face {
   font-family: 'Clash Display';
   src: url('/fonts/ClashDisplay-Regular.woff2') format('woff2');
@@ -39,12 +43,6 @@
   font-weight: 200;
   font-style: normal;
 }
-
-
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 body, p {
   font-family: 'Inter', sans-serif;
