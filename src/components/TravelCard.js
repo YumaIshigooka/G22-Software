@@ -52,7 +52,7 @@ const TravelCard = ({ travel, vertical}) => {
                 </div>
             ) : (
                 <div className="flex bg-white rounded-xl w-[64vw] my-[0.5vw] hover:cursor-pointer hover:scale-105 transition-transform duration-300 shadow-md">
-                    <img src={travel_picture} alt='not found' className='h-30 w-48' style={{ borderRadius: '10px 0 0 10px' }}></img>
+                    <img src={travel_picture} alt='not found' className='h-30 w-48 max-h-[140px]' style={{ borderRadius: '10px 0 0 10px' }}></img>
                     <div className='flex flex-col justify-start items-start ml-4 mr-12 w-[60%]'>
                         <p className='font-bold text-lg mt-4'>{destination}</p>
                         <div className='flex'>

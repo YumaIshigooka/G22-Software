@@ -18,11 +18,38 @@ function convertNewlinesToParagraphs(text) {
 export default function ProfileClient({ user, profileData: initialProfileData }) {
   const [isEditing, setIsEditing] = useState(false);
   const [profileData, setProfileData] = useState(initialProfileData || {});
+  const [createdTrips, setCreatedTrips] = useState([]);
+  const [joinedTrips, setJoinedTrips] = useState([]);
   const supabase = createClientComponentClient();
 
   useEffect(() => {
     setProfileData(initialProfileData || {});
+    fetchTrips();
   }, [initialProfileData]);
+
+  const fetchTrips = async () => {
+    const { data: joinedTripsData, error: joinedTripsError } = await supabase
+      .from('travels')
+      .select('*')
+      .contains('joined_users', [initialProfileData.user_id]);
+
+    if (joinedTripsError) {
+      console.error('Error fetching joined trips:', joinedTripsError);
+    } else {
+      setJoinedTrips(joinedTripsData || []);
+    }
+
+    const { data: createdTripsData, error: createdTripsError } = await supabase
+      .from('travels')
+      .select('*')
+      .eq('creator_id', initialProfileData.user_id);
+
+    if (createdTripsError) {
+      console.error('Error fetching created trips:', createdTripsError);
+    } else {
+      setCreatedTrips(createdTripsData || []);
+    }
+  };
 
   const handleEditClick = () => {
     setIsEditing(true);
@@ -37,43 +64,39 @@ export default function ProfileClient({ user, profileData: initialProfileData })
   };
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  try {
-    const response = await fetch('/api/profile', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ ...profileData, auth_user_id: user.id }),
-    });
+    try {
+      const response = await fetch('/api/profile', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ ...profileData, auth_user_id: user.id }),
+      });
 
-    if (response.ok) {
-      // Reload profile data after successful update
-      const { data: updatedProfileData, error } = await supabase
-        .from('users')
-        .select('*')
-        .eq('auth_user_id', user.id)
-        .single();
+      if (response.ok) {
+        const { data: updatedProfileData, error } = await supabase
+          .from('users')
+          .select('*')
+          .eq('auth_user_id', user.id)
+          .single();
 
-      if (error) {
-        console.error('Error fetching updated profile data:', error);
+        if (error) {
+          console.error('Error fetching updated profile data:', error);
+        } else {
+          setProfileData(updatedProfileData);
+          setIsEditing(false);
+          fetchTrips();
+        }
       } else {
-        setProfileData(updatedProfileData);
-        setIsEditing(false);
+        const errorData = await response.json();
+        console.error(`Error: ${errorData.message}`);
       }
-    } else {
-      const errorData = await response.json();
-      console.error(`Error: ${errorData.message}`);
+    } catch (error) {
+      console.error(`Error: ${error.message}`);
     }
-  } catch (error) {
-    console.error(`Error: ${error.message}`);
-  }
-};
-
-
-
-
+  };
 
   return (
     <div className="flex w-full flex-col">
@@ -106,7 +129,7 @@ export default function ProfileClient({ user, profileData: initialProfileData })
             <label className="block text-sm font-bold mb-2">Name</label>
             <input
               type="text"
-              name="name" // Update to match database column name
+              name="name"
               value={profileData?.name || ''}
               onChange={handleChange}
               className="border-1 border-gray-300 p-2 rounded-md w-full custom-textarea focus:outline-1 focus:outline-gray-100 focus:border-gray-100"
@@ -116,7 +139,7 @@ export default function ProfileClient({ user, profileData: initialProfileData })
             <label className="block text-sm font-bold mb-2">Tagline</label>
             <input
               type="text"
-              name="user_presentation" // Update to match database column name
+              name="user_presentation"
               value={profileData.user_presentation || ''}
               onChange={handleChange}
               className="border-1 border-gray-300 p-2 rounded-md w-full custom-textarea focus:outline-1 focus:outline-gray-100 focus:border-gray-100"
@@ -125,7 +148,7 @@ export default function ProfileClient({ user, profileData: initialProfileData })
           <div className="mb-4">
             <label className="block text-sm font-bold mb-2">About Me</label>
             <textarea
-              name="aboutme_description" // Update to match database column name
+              name="aboutme_description"
               value={profileData.aboutme_description || ''}
               onChange={handleChange}
               className="border-1 border-gray-300 p-2 rounded-md w-full h-[18vh] custom-textarea focus:outline-1 focus:outline-gray-100 focus:border-gray-100"
@@ -146,12 +169,21 @@ export default function ProfileClient({ user, profileData: initialProfileData })
               <p className="text-md text-blue-600 font-bold mt-[3vh]">Posted Photos</p>
               <p className="text-sm text-slate-600 text-left mt-[2vh]">No photos have been posted yet :(</p>
               <p className="text-md text-blue-600 font-bold mt-[3vh]">Created Itineraries</p>
-              {/* Render your ItineraryCards here dynamically */}
+                {createdTrips.map((trip) => (
+                <div className='flex my-2'>
+                  <ItineraryCard key={trip.travel_id} travel={trip} style={1} />
+                </div>
+              ))}
             </div>
             <div style={{ flex: '40%' }}>
               <p className="text-md text-blue-600 font-bold text-left ml-[4vw]">Travel History</p>
               <div className="flex ml-[4vw] flex-col">
-                {/* Render your ItineraryCards here dynamically */}
+                {/* Render user's joined trips */}
+                {joinedTrips.map((trip) => (
+                  <div className='flex my-2'>
+                    <ItineraryCard key={trip.travel_id} travel={trip} style={2} />
+                  </div>
+                ))}
               </div>
             </div>
           </div>
