@@ -1,4 +1,4 @@
-import React from 'react'; // Add this import statement
+import React from 'react';
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
@@ -15,14 +15,15 @@ export default async function ProfilePage() {
     redirect('/sign-in');
   }
 
-  // Fetch additional user profile data if needed
-  const profileData = {
-    name: 'Angel Gallardo',
-    tagline: 'A la aventura! 🐔',
-    about: `¡Hola! Soy Angel Gallardo, un apasionado viajero que ha hecho del mundo su hogar. Desde pequeño, siempre sentí una atracción por lo desconocido y un deseo insaciable de explorar nuevos horizontes. Esto me ha llevado a recorrer más de 40 países, sumergiéndome en diferentes culturas y aprendiendo cada día algo nuevo de la diversidad que nuestro planeta tiene para ofrecer.
-    
-    Si buscas recomendaciones de viaje, consejos sobre cómo viajar de forma económica o simplemente quieres compartir historias y experiencias, ¡no dudes en conectarte conmigo! Estoy aquí para inspirar y ser inspirado por otros trotamundos como tú. ¡Nos vemos en el camino!`,
-  };
+  const { data: profileData, error } = await supabase
+    .from('users')
+    .select('*')
+    .eq('auth_user_id', user.id)
+    .single();
 
-  return <ProfileClient user={user} profileData={profileData} />;
+  if (error) {
+    console.error('Error fetching profile data:', error);
+  }
+
+  return <ProfileClient user={user} profileData={profileData || {}} />;
 }
