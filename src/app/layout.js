@@ -15,6 +15,7 @@ import { cookies } from 'next/headers';
 import AuthProvider from 'src/components/AuthProvider';
 import Navbar from 'src/components/Navbar';
 import 'src/styles/globals.css';
+import Head from './head';
 
 // This might be either a functional component or part of a page depending on your setup
 export default async function Layout({ children }) {
@@ -27,6 +28,7 @@ export default async function Layout({ children }) {
 
   return (
     <html>
+      <Head />
       <body className='max-w-[1920px] mx-auto'>
         <Navbar user={session?.user} background="blue" />
         <AuthProvider accessToken={session?.access_token}>{children}</AuthProvider>
