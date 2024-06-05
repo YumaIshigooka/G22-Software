@@ -12,17 +12,32 @@ export default async function Explore() {
 
     return (
         <div className="flex flex-col items-center">
+            <p className='text-4xl font-semibold mr-auto ml-[17.6vw] mt-[4vh] mb-[1vw]'>EXPLORE</p>
             {/* Only the first three cards, centered and vertical */}
-            <div className="p-4 flex justify-center space-x-4">
+            <div className="p-4 flex justify-center space-x-4 mb-12">
                 {data.slice(0, 3).map((travel) => (
-                    <TravelCard key={travel.travel_id} travel={travel} vertical={true} />
+                    <TravelCard
+                        key={travel.travel_id}
+                        travel={travel}
+                        vertical={true}
+                    />
                 ))}
             </div>
-            {/* The rest of the cards, normal layout */}
-            <div className="p-4 flex flex-wrap justify-center space-x-4">
-                {data.slice(3).map((travel) => (
-                    <TravelCard key={travel.travel_id} travel={travel} vertical={false} />
-                ))}
+            <div className='flex w-full flex-col justify-center items-center bg-slate-100'>
+                <div className='flex text-left mt-4 mb-6 text-2xl font-medium w-[64vw]'>
+                    <p>New Available Trips!</p>
+                </div>
+
+                {/* The rest of the cards, normal layout */}
+                <div className="p-4 flex justify-center flex-col w-full align-middle items-center">
+                    {data.slice(3).map((travel) => (
+                        <TravelCard
+                            key={travel.travel_id}
+                            travel={travel}
+                            vertical={false}
+                        />
+                    ))}
+                </div>
             </div>
         </div>
     );

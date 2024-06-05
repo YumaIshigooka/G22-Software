@@ -11,7 +11,49 @@ function convertNewlinesToParagraphs(text) {
   ));
 }
 
+
 export default function ProfileClient({ user, profileData: initialProfileData }) {
+
+  const travel1 = {
+    travel_id: 1,
+    destination: 'Hawaii',
+    start_date: '2024-07-01',
+    end_date: '2024-07-25',
+    max_people: 10,
+    joined_users: 2,
+    description: 'A beautiful trip to Hawaii.',
+    available_users: 8,
+    rating: 4.5,
+    cost: 1500
+  };
+
+  const travel2 = {
+    travel_id: 1,
+    destination: 'Vietnam',
+    start_date: '2023-07-15',
+    end_date: '2023-07-25',
+    max_people: 10,
+    joined_users: 4,
+    description: 'Cool trip to vietnam',
+    available_users: 8,
+    rating: 3,
+    cost: 1500
+  };
+
+  const travel3 = {
+    travel_id: 1,
+    destination: 'Congo',
+    start_date: '2023-07-15',
+    end_date: '2023-07-25',
+    max_people: 10,
+    joined_users: 4,
+    description: 'Explore congo with company',
+    available_users: 8,
+    rating: 5,
+    cost: 1500
+  };
+
+
   const [isEditing, setIsEditing] = useState(false);
   const [profileData, setProfileData] = useState(initialProfileData);
 
@@ -106,12 +148,9 @@ export default function ProfileClient({ user, profileData: initialProfileData })
               <p className='text-md text-blue-600 font-bold mt-[3vh]'>Created Itineraries</p>
               <div className='mb-[3vh] mt-[3vh]'>
                 <ItineraryCard 
-                  image="hawaii_compressed.webp"
-                  title="Hawaii"
-                  depart_date="2024-07-01"
-                  return_date="2024-07-15"
-                  places="5"
-                  history={false}
+                  image = "hawaii_compressed.webp"
+                  travel={travel1}
+                  style = {1}
                 />
               </div>
             </div>
@@ -120,24 +159,16 @@ export default function ProfileClient({ user, profileData: initialProfileData })
               <div className='flex ml-[4vw] flex-col'>
                 <div className='mt-[3vh] flex'>
                   <ItineraryCard 
-                    image="vietnam_compressed.webp"
-                    title="Vietnam"
-                    depart_date="2024-07-01"
-                    return_date="2024-07-15"
-                    places="5"
-                    history={true}
-                    valoration={4}
+                    image = "vietnam_compressed.webp"
+                    travel={travel2}
+                    style = {2}
                   />
                 </div>
                 <div className='mt-[3vh] flex'>
                   <ItineraryCard 
-                    image="congo_compressed.webp"
-                    title="Congo Exploration"
-                    depart_date="2024-07-01"
-                    return_date="2024-07-15"
-                    places="5"
-                    history={true}
-                    valoration={3}
+                    image = "congo_compressed.webp"
+                    travel={travel3}
+                    style = {2}
                   />
                 </div>
               </div>
