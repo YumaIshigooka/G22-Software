@@ -37,7 +37,7 @@ const PublishPage = async () => {
     }
 
     return (
-        <div className="container mx-auto p-4">
+        <div className="w-full mx-auto p-4" style={{backgroundImage: 'url("/lake.jpeg")', backgroundSize: 'cover', backgroundRepeat: 'no-repeat'}}>
             <PublishTravelForm user_id={data.user_id} />
         </div>
     );
