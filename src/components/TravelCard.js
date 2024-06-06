@@ -40,7 +40,7 @@ const TravelCard = ({ travel, vertical}) => {
                         </div>
                         <div className='flex mt-3'>
                             {joined_users.slice(0, 2).map((user, index) => (
-                                <img key={index} src='user_default.jpg' className='size-5 rounded-full mr-2' alt='User'/>
+                                <img key={index} src='user_default.jpg' className='size-5 rounded-full mr-2 ' alt='User'/>
                             ))}
                             {joined_users.length > 2 && (
                                 <div className='text-white'>
@@ -52,7 +52,8 @@ const TravelCard = ({ travel, vertical}) => {
                 </div>
             ) : (
                 <div className="flex bg-white rounded-xl w-[64vw] my-[0.5vw] hover:cursor-pointer hover:scale-105 transition-transform duration-300 shadow-md">
-                    <img src={travel_picture} alt='not found' className='h-30 w-48 max-h-[140px]' style={{ borderRadius: '10px 0 0 10px' }}></img>
+                        <img src={travel_picture} alt='not found' className='w-[500px] h-auto max-h-[140px] object-cover' style={{ borderRadius: '10px 0 0 10px' }} />
+
                     <div className='flex flex-col justify-start items-start ml-4 mr-12 w-[60%]'>
                         <p className='font-bold text-lg mt-4'>{destination}</p>
                         <div className='flex'>
