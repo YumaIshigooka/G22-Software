@@ -12,7 +12,7 @@ export default async function Explore() {
 
     return (
         <div className="flex flex-col items-center">
-            <h1 className='text-4xl font-semibold mr-auto ml-[17.6vw] mt-[8vh] mb-[5vh]'>EXPLORE</h1>
+            <h1 className='text-4xl font-semibold mr-auto ml-[17.6vw] mt-16 mb-10'>EXPLORE</h1>
             {/* Only the first three cards, centered and vertical */}
             <div className="p-4 flex justify-center space-x-4 mb-12">
                 {data.slice(0, 3).map((travel) => (
