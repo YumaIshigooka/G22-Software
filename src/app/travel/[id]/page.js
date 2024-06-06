@@ -1,6 +1,12 @@
+// @ts-nocheck
 import React from 'react';
 import { createClient } from 'utils/supabase/server';
 import TravelCard from 'src/components/TravelCard';
+import { createClientComponentClient, createServerComponentClient } from '@supabase/auth-helpers-nextjs';
+import { createServerClient } from '@supabase/ssr';
+
+import { cookies } from 'next/headers';
+import ButtonJoin from 'src/components/ButtonJoin';
 
 // This function fetches data for a specific travel based on its ID
 export async function fetchTravelById(id) {
@@ -16,6 +22,7 @@ export async function fetchTravelById(id) {
 
 const TravelPage = async ({ params }) => {
     const { id } = params;
+    let supabase = createClient();
 
     // Fetch travel data based on the dynamic id
     let travel;
@@ -25,26 +32,67 @@ const TravelPage = async ({ params }) => {
         return <div>Error: {error.message}</div>;
     }
 
+    let color;
+    if (travel.available_users > 5) {
+        color = 'MediumSeaGreen';
+    } else if (travel.available_users > 2) {
+        color = 'orange';
+    } else {
+        color = 'red';
+    }
+
+    const query = supabase.from('users').select().in('user_id', travel.joined_users);
+    let { data: users, swing } = await query;
+
+    
+    supabase = createServerComponentClient({cookies});
+
+    const {
+        data: {session},
+    } = await supabase.auth.getSession();
+
+    console.log(session);
+
+    let user_from_public;
+
+    const queryUser = supabase.from('users').select().eq('auth_user_id', session.user.id);
+    let { data: user } = await queryUser;
+
+    let buttonAvailable = false;
+    console.log('user_id:', user);
+    user_from_public = user;
+    if (travel.creator_id == user.user_id){
+        buttonAvailable = false;
+    } else if (user.length > 0) {
+        buttonAvailable = true
+    }
+
     return (
-        <div>
+        <div style={{ backgroundImage: `url(${travel.travel_picture[0]})` }} className='pt-20'>
             {/* Main content */}
-            <div className="max-w-screen-xl mx-auto bg-white/90 mt-12 rounded-lg p-24 shadow-lg backdrop-blur-lg">
+            <div className="max-w-screen-xl mx-auto bg-white/90 rounded-lg p-24 shadow-lg backdrop-blur-lg" >
+            <pre>{JSON.stringify(travel, null,2)}</pre>
+            <pre>{JSON.stringify(users, null, 2)}</pre>
                 {/* Title and intro */}
                 <div className="flex">
                     <div className="flex-1">
-                        <div className="text-4xl font-semibold uppercase mb-4">Hawaii</div>
+                        <div className="text-4xl font-semibold uppercase mb-4">{travel.destination}</div>
                         <div className="text-sm font-light mb-6">
-                            Bienvenido a nuestra guía de viaje para Hawaii. En solo 4 días, te mostraremos los lugares más icónicos y las experiencias culturales únicas de estas islas paradisíacas. Desde las majestuosas playas de Waikiki hasta las tradicionales danzas hula, prepárate para una aventura inolvidable. ¡Vamos!
+                            {travel.description}
                         </div>
                         <div className="mb-6">
-                            <div className="text-xs font-light mb-1">24/05/2024 - 28/04/2024</div>
+                            <div className="text-xs font-light mb-1">{travel.start_date} to {travel.end_date}</div>
                             <div className="text-xs font-bold">
-                                Approximate cost: <span className="font-light">400 - 600 $</span>
+                                Approximate cost: <span className="font-light">{travel.cost ? travel.cost + '€' : 'No budget has been defined'} </span>
                             </div>
-                            <div className="text-base font-normal">Solo queda 1 plaza</div>
+                                <p className="mt-4"> <svg height="20" width="20" className='inline-block'>
+                                    <circle cx="10" cy="10" r="4" fill={color} />
+                                </svg>
+                                Solo quedan {travel.available_users} plaza/s</p>
+                            {buttonAvailable ? <ButtonJoin text="Join" bgColor="bg-blue-500" user={user} travel={travel}/> : null}
                         </div>
                     </div>
-                    <img className="w-96 h-64 object-cover rounded-lg ml-8" src="https://via.placeholder.com/454x314" alt="Hawaii Map" />
+                    <img className="w-96 h-64 object-cover rounded-lg ml-8" src={travel.travel_picture[0]} alt="Hawaii Map" />
                 </div>
                 <img className="w-full h-96 object-cover rounded-lg my-6" src="https://via.placeholder.com/1118x386" alt="Hawaii" />
 
@@ -112,32 +160,22 @@ const TravelPage = async ({ params }) => {
                     <div className="w-px bg-gray-300 mx-4"></div>
                     {/* Members */}
                     <div className="flex-1">
+
                         <div className="text-xl font-bold text-blue-700 mb-2">Members</div>
                         <div className="space-y-4">
-                            <div className="flex items-center space-x-4">
-                                <div className="w-10 h-10 bg-gray-400 rounded-full overflow-hidden">
-                                    <img src="https://via.placeholder.com/40x40" alt="Angel Gallardo" />
-                                </div>
-                                <div>
-                                    <div className="text-sm font-normal text-gray-900">Angel Gallardo <span className="text-rose-600">(Admin)</span></div>
-                                </div>
-                            </div>
-                            <div className="flex items-center space-x-4">
-                                <div className="w-10 h-10 bg-gray-400 rounded-full overflow-hidden">
-                                    <img src="https://via.placeholder.com/40x40" alt="Roberto Toro" />
-                                </div>
-                                <div>
-                                    <div className="text-sm font-normal text-gray-900">Roberto Toro</div>
-                                </div>
-                            </div>
-                            <div className="flex items-center space-x-4">
-                                <div className="w-10 h-10 bg-gray-400 rounded-full overflow-hidden">
-                                    <img src="https://via.placeholder.com/40x40" alt="Sofia Aguilar" />
-                                </div>
-                                <div>
-                                    <div className="text-sm font-normal text-gray-900">Sofia Aguilar</div>
-                                </div>
-                            </div>
+                            {users.map(user => {
+                                return (
+                                    <div className="flex items-center space-x-4">
+                                        <div className="w-10 h-10 bg-gray-400 rounded-full overflow-hidden">
+                                            <img src={user.profile_picture} alt={user.name} />
+                                        </div>
+                                        <div>
+                                            <div className="text-sm font-normal text-gray-900">{user.name} <span className="text-rose-600">
+                                                {user.user_id == travel.creator_id && '(Admin)'}</span></div>
+                                        </div>
+                                    </div>
+                                    )
+                            })}
                         </div>
                     </div>
                 </div>
