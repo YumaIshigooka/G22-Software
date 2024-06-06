@@ -15,8 +15,8 @@ const SearchPage = async (searchParams) => {
     let { data, swing } = await query;
 
     return (
-        <div className="container mx-auto">
-            <h1 className="text-2xl font-bold my-4">Search Results</h1>
+        <div className="container mx-auto mt-10">
+            <h1 className="text-2xl font-medium my-4">Search Results</h1>
             <div className="p-4 flex flex-wrap justify-center space-x-4">
                 {data.map((travel) => (
                     <TravelCard key={travel.travel_id} travel={travel} vertical={false} />
