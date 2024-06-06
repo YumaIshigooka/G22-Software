@@ -17,6 +17,15 @@ const ItineraryCard = ({travel, style}) => {
         travel_picture
     } = travel;
 
+    let color;
+    if (travel.available_users > 5) {
+        color = 'MediumSeaGreen';
+    } else if (travel.available_users > 2) {
+        color = 'orange';
+    } else {
+        color = 'red';
+    }
+
     return (
     <Link href={`/travel/${travel_id}`}>
         <div className="flex bg-white rounded-xl w-[28vw] hover:cursor-pointer hover:scale-105 transition-transform duration-300 shadow-md">
@@ -37,7 +46,9 @@ const ItineraryCard = ({travel, style}) => {
             </div>
             {style == 1 && (
             <div className='flex text-sm border border-slate-500 px-2 rounded-full mt-2'>
-                <p>🔴</p>
+            <svg height="20" width="20">
+                <circle cx="10" cy="10" r="4" fill={color} />
+            </svg>
                 <p className='ml-2 mt'>Solo queda {available_users} plazas.</p>
             </div>
             )}

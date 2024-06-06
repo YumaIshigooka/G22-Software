@@ -17,6 +17,15 @@ const TravelCard = ({ travel, vertical}) => {
         travel_picture
     } = travel;
 
+    let color;
+    if (travel.available_users > 5) {
+        color = 'MediumSeaGreen';
+    } else if (travel.available_users > 2) {
+        color = 'orange';
+    } else {
+        color = 'red';
+    }
+
     const formatDate = (dateString) => {
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
         return new Date(dateString).toLocaleDateString(undefined, options);
@@ -30,7 +39,9 @@ const TravelCard = ({ travel, vertical}) => {
                     <div className='relative flex flex-col items-start p-4 text-white'>
                         <p className='font-bold text-md text-3xl'>{destination}</p>
                         <div className='flex text-sm border border-slate-500 px-2 py-1 rounded-full mt-4 bg-white text-black items-center'>
-                            <p>🔴</p>
+                            <svg height="20" width="20">
+                                <circle cx="10" cy="10" r="4" fill={color} />
+                            </svg>
                             <p className='ml-2 text-md'>{available_users} plazas disponibles</p>
                         </div>
                         <div className='flex text-xs mt-1'>
@@ -51,7 +62,7 @@ const TravelCard = ({ travel, vertical}) => {
                     </div>
                 </div>
             ) : (
-                <div className="flex bg-white rounded-xl w-[64vw] my-[0.5vw] hover:cursor-pointer hover:scale-105 transition-transform duration-300 shadow-md">
+                <div className="flex bg-white rounded-xl w-[64vw] my-[0.5vw] hover:cursor-pointer hover:scale-105 transition-transform duration-300 shadow-sm">
                         <img src={travel_picture} alt='not found' className='w-[500px] h-auto max-h-[140px] object-cover' style={{ borderRadius: '10px 0 0 10px' }} />
 
                     <div className='flex flex-col justify-start items-start ml-4 mr-12 w-[60%]'>
@@ -64,7 +75,9 @@ const TravelCard = ({ travel, vertical}) => {
                             </div>
                         </div>
                         <div className='flex text-sm border border-slate-300 px-1 rounded-full mt-1 bg-white text-black items-center'>
-                            <p>🔴</p>
+                                <svg height="20" width="20">
+                                    <circle cx="10" cy="10" r="4" fill={color} />
+                                </svg>
                             <p className='ml-2 text-md'>Solo queda {available_users} plaza/s.</p>
                         </div>
                         <div className='flex mt-3 mb-4'>
