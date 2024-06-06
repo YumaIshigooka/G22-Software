@@ -71,8 +71,8 @@ const TravelPage = async ({ params }) => {
         <div style={{ backgroundImage: `url(${travel.travel_picture[0]})` }} className='pt-20'>
             {/* Main content */}
             <div className="max-w-screen-xl mx-auto bg-white/90 rounded-lg p-24 shadow-lg backdrop-blur-lg" >
-            <pre>{JSON.stringify(travel, null,2)}</pre>
-            <pre>{JSON.stringify(users, null, 2)}</pre>
+            {/* <pre>{JSON.stringify(travel, null,2)}</pre> */}
+            {/* <pre>{JSON.stringify(users, null, 2)}</pre> */}
                 {/* Title and intro */}
                 <div className="flex">
                     <div className="flex-1">
